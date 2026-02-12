@@ -68,8 +68,29 @@ yesBtn.addEventListener("click", () => {
     createConfetti();
 
     setTimeout(() => {
-        if (successPage) {
-            successPage.classList.add("show");
-        }
+        successPage.classList.add("show");
+
+        // Start floating hearts every 400ms
+        setInterval(createSuccessHeart, 400);
+
     }, 800);
 });
+
+
+/* 💕 Floating Hearts on Success Page */
+function createSuccessHeart() {
+    const heart = document.createElement("div");
+    heart.innerHTML = "🌹";
+    heart.style.position = "absolute";
+    heart.style.fontSize = (Math.random() * 25 + 20) + "px";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.bottom = "-20px";
+    heart.style.opacity = "0.8";
+    heart.style.animation = "floatUp 6s linear forwards";
+
+    successPage.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
